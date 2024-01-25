@@ -1,14 +1,22 @@
 // Third-party imports.
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 
 // Local imports. 
 import CartOverview from "../features/cart/CartOverview";
 import Header from "./Header";
+import Loader from "./Loader";
 
 const AppLayout = () => {
 
+    const navigation = useNavigation();
+    const isLoading = navigation.state === 'loading';
+
+    console.log(navigation.state)
+
     return (
-        <div>
+        <div className = 'layout'>
+            { isLoading && <Loader /> }
+
             <Header />
 
             <main>
